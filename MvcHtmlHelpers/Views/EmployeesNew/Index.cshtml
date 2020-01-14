@@ -1,0 +1,48 @@
+﻿@model IEnumerable<MvcHtmlHelpers.Models.EmployeesNew>
+@{
+    Layout = "../Shared/_Layout.cshtml";
+}
+<p></p>
+<div>   
+    <table class="table table-striped table-bordered table-hover">
+        <captions><div class="glyphicon glyphicon-user"></div>員工資料清單</captions>
+        <thead>
+            <tr>
+                <th>編號</th>
+                <th>姓名</th>
+                <th>手機</th>
+                <th>信箱</th>
+                <th>部門</th>
+                <th>抬頭</th>
+                <th>異動</th>                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(x => m.Id)</td>
+                    <td>@Html.DisplayFor(x => m.Name)</td>
+                    <td>@Html.DisplayFor(x => m.Mobile)</td>
+                    <td>@Html.DisplayFor(x => m.Email)</td>
+                    <td>@Html.DisplayFor(x => m.Department)</td>
+                    <td>@Html.DisplayFor(x => m.Title)</td>
+                    <td>
+                        @Html.ActionLink("明細", "Details", new { id = m.Id }, htmlAttributes: new { @class = "btn btn-info" })
+                        @Html.ActionLink("編輯", "Edit", new { id = m.Id }, htmlAttributes: new { @class = "btn btn-primary" })
+                        @Html.ActionLink("刪除", "Delete", new { id = m.Id }, htmlAttributes: new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="7">Power by @MyFunctions.getBookTitle()</td>
+            </tr>
+        </tfoot>
+    </table>
+    <p>
+        @Html.ActionLink("新增員工資料", "Create", null, new { @class = "btn btn-warning" })
+    </p>
+
+</div>
